@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroScan - {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</head>
+<body>
+    <!-- Efecto de partículas para fondo tecnológico -->
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <header>
+            <a href="{{ url_for('home') }}" class="logo">
+                <i class="fas fa-brain"></i>
+                <span>NeuroTrack Alzheimer</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Inicio</a></li>
+                    <li><a href="{{ url_for('gallery') }}">Galería</a></li>
+                    <li><a href="{{ url_for('stats') }}">Estadísticas</a></li>
+                    <li><a href="{{ url_for('nosotros') }}">Sobre Nosotros</a></li>
+                    {% if current_user.is_authenticated %}
+            <li>
+                <a href="{{ url_for('logout') }}" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </a>
+            </li>
+        {% endif %}
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer>
+            <p>NeuroScan &copy; 2023 - Sistema de diagnóstico asistido por IA</p>
+            <div class="social-links">
+                
+                <a href="https://www.linkedin.com/in/daniel-felipe-vald%C3%A9s-viloria-539987373/"><i class="fab fa-linkedin"></i></a>
+                <span>Daniel Viloria</span>
+                <a href="https://github.com/DanielViloria855"><i class="fab fa-github"></i></a>
+                <span>Daniel Viloria</span>
+                <a href="http://www.linkedin.com/in/emmanuel-quintero-valencia-14599433a"><i class="fab fa-linkedin"></i></a>
+                <span>Emmanuel Quintero</span>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

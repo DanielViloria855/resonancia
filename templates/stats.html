@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block title %}Estadísticas de Predicciones{% endblock %}
+
+{% block content %}
+<section id="stats" class="fade-in">
+    <div class="stats-intro">
+        <h1 class="page-title">Estadísticas de Predicciones</h1>
+        <p>Análisis visual de los resultados generados por nuestro modelo de inteligencia artificial</p>
+    </div>
+
+    {% if imagen1 %}
+    <div class="stats-grid-container">
+        <div class="chart-card fade-in">
+            <h2 class="chart-title">Predicciones por Clase</h2>
+            <div class="chart-container">
+                <img src="{{ url_for('static', filename=imagen1) }}" alt="Predicciones por clase">
+            </div>
+        </div>
+        
+        <div class="chart-card fade-in delayed-1">
+            <h2 class="chart-title">Distribución Porcentual</h2>
+            <div class="chart-container">
+                <img src="{{ url_for('static', filename=imagen2) }}" alt="Distribución porcentual">
+            </div>
+        </div>
+        
+        <div class="chart-card fade-in delayed-2">
+            <h2 class="chart-title">Evolución Diaria</h2>
+            <div class="chart-container">
+                <img src="{{ url_for('static', filename=imagen3) }}" alt="Evolución diaria">
+            </div>
+        </div>
+        
+        <div class="chart-card fade-in delayed-3">
+            <h2 class="chart-title">Distribución por Clase y Día</h2>
+            <div class="chart-container">
+                <img src="{{ url_for('static', filename=imagen4) }}" alt="Distribución por clase y día">
+            </div>
+        </div>
+    </div>
+
+    <div class="stats-section fade-in">
+        <h2>Resumen Estadístico</h2>
+        {{ tabla_html|safe }}
+    </div>
+    {% else %}
+    <div class="no-data">
+        <h2>No hay datos disponibles</h2>
+        <p>Aún no se han realizado predicciones para generar estadísticas.</p>
+    </div>
+    {% endif %}
+    
+    <div class="usage-info fade-in">
+        <h2>Patrones de Uso</h2>
+        <p>El análisis de los patrones de uso nos permite mejorar continuamente nuestro modelo y adaptarlo a las necesidades reales de los profesionales médicos.</p>
+        
+        <div class="usage-stats">
+            
+            <div class="stat">
+                <i class="fas fa-file-upload"></i>
+                <p class="value">30000+</p>
+                <p>Imágenes analizadas</p>
+            </div>
+            <div class="stat">
+                <i class="fas fa-chart-bar"></i>
+                <p class="value">93.7%</p>
+                <p>Precision de datos</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

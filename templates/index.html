@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block title %}Clasificador de Alzheimer{% endblock %}
+
+{% block content %}
+   <section id="home" class="fade-in">
+   <h1>Bienvenido, {{ nombre_usuario }}!</h1>
+    <div class="hero">
+       
+        <h1>Detección Temprana de Alzheimer</h1>
+        <p>Utilizamos inteligencia artificial de vanguardia para analizar imágenes de resonancia magnética y predecir las etapas del Alzheimer con precisión.</p>
+    </div>
+
+    <div class="upload-container fade-in delayed-1">
+        <div class="upload-area" id="upload-area">
+            <i class="fas fa-cloud-upload-alt floating"></i>
+            <h3>Sube una imagen de resonancia magnética</h3>
+            <p>Formatos soportados: JPG, PNG</p>
+            <input type="file" id="imagen" accept="image/*">
+            <p id="file-name"></p>
+            <img id="preview" src="" alt="Vista previa" style="display:none;max-width:300px;margin-top:10px;border-radius:8px;">
+        </div>
+        
+        <button class="btn-predict" id="predict-btn" disabled>Analizar Imagen</button>
+        
+        <div id="result-container">
+            <h3>Resultado del Análisis:</h3>
+            <p id="resultado"></p>
+            <div id="confidence"></div>
+        </div>
+    </div>
+
+    <div class="info-cards fade-in delayed-2">
+        <div class="info-card">
+            <i class="fas fa-brain"></i>
+            <h3>Tecnología Avanzada</h3>
+            <p>Nuestra red neuronal convolucional (CNN) ha sido entrenada con miles de imágenes médicas para ofrecer diagnósticos precisos.</p>
+        </div>
+        
+        <div class="info-card">
+            <i class="fas fa-stethoscope"></i>
+            <h3>Apoyo Médico</h3>
+            <p>Herramienta diseñada para apoyar a profesionales de la salud en el diagnóstico temprano de enfermedades neurodegenerativas.</p>
+        </div>
+        
+        <div class="info-card">
+            <i class="fas fa-chart-line"></i>
+            <h3>Monitoreo Continuo</h3>
+            <p>Registra y analiza la evolución de los pacientes a lo largo del tiempo para un mejor seguimiento del tratamiento.</p>
+        </div>
+    </div>
+    
+    <div class="model-info fade-in delayed-3">
+        <h2>Nuestro Modelo CNN</h2>
+        <p>El modelo utiliza una arquitectura de red neuronal convolucional (CNN) de 3 capas, entrenada con más de 60000 imágenes de resonancia magnética clasificadas en 4 etapas de Alzheimer.</p>
+        
+        <div class="model-stats">
+            <div class="stat">
+                <h4>Precisión</h4>
+                <p class="value">93.7%</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+document.getElementById('imagen').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    const preview = document.getElementById('preview');
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(ev) {
+            preview.src = ev.target.result;
+            preview.style.display = 'block';
+        }
+        reader.readAsDataURL(file);
+    } else {
+        preview.src = '';
+        preview.style.display = 'none';
+    }
+});
+</script>
+{% endblock %}

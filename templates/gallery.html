@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}Galería de Imágenes{% endblock %}
+
+{% block content %}
+<section id="gallery" class="fade-in">
+    <div class="gallery-header">
+        <h1 class="page-title">Galería de Imágenes de Resonancia Magnética</h1>
+        <p>Colección de muestras utilizadas para entrenar nuestro modelo de inteligencia artificial</p>
+    </div>
+
+    <div class="gallery-grid">
+        {% for img in images %}
+        <div class="gallery-item fade-in">
+            <img src="{{ url_for('static', filename=img) }}" alt="Muestra de resonancia">
+            <div class="gallery-caption">{{ img.split('/')[-1] }}</div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div class="gallery-info fade-in delayed-1">
+        <h2>Dataset utilizado</h2>
+<p>Nuestro modelo fue entrenado con el dataset <strong>“Alzheimer MRI Dataset”</strong>, disponible en <a href="https://www.kaggle.com/datasets" target="_blank">Kaggle</a>. Este conjunto contiene imágenes de resonancia magnética cerebral clasificadas en cuatro categorías clínicas: NonDemented, VeryMildDemented, MildDemented y ModerateDemented. Las imágenes fueron preprocesadas y redimensionadas a 64x64 píxeles en escala de grises.</p>
+
+        
+        <div class="dataset-stats">
+            <div class="stat">
+                <h4>Imágenes</h4>
+                <p class="value">33,000+</p>
+            </div>
+      
+            <div class="stat">
+                <h4>Resolución</h4>
+                <p class="value">64×64 px</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
